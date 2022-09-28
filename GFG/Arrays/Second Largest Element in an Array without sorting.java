@@ -56,6 +56,68 @@ public class untitled{
 // TC: O(n)
 //SC: O(1)
 
+//-----------------------------------------------------------------------------------------------------
 
 
 
+import java.util.Arrays;
+
+public class untitled{
+    public static void main(String[] args) {
+    	int[] nums = {1,2, 3, 4, 5, 6, 7};
+
+    	System.out.println(Arrays.toString(secondlargestAndSecondSmallestElements(nums)));
+    }
+
+    private static int[] secondlargestAndSecondSmallestElements(int[] nums) {
+
+    	int n = nums.length;
+    	if(n < 2) return new int[] {-1, -1};
+
+    	int sl = largestElement(nums, n);
+    	int ss = smallestElement(nums, n);
+
+    	return new int[] {ss, sl};
+
+    }
+
+    private static int largestElement(int[] nums, int n) {
+    	int max = Integer.MIN_VALUE;
+    	int smax = Integer.MIN_VALUE;
+
+    	for(int i = 0; i < n; i++) {
+    		if(nums[i] > max) {
+    			smax = max;
+    			max = nums[i];
+    		}
+
+    		else if(nums[i] > smax && nums[i] != max) {
+    			smax = nums[i];
+    		}
+    	}
+
+    	return smax;
+
+    }
+    private static int smallestElement(int[] nums, int n) {
+    	int min = Integer.MAX_VALUE;
+    	int smin = Integer.MAX_VALUE;
+
+    	for(int i = 0; i < n; i++) {
+    		if(nums[i] < min) {
+    			smin = min;
+    			min = nums[i];
+    		}
+
+    		else if(nums[i] < smin && nums[i] != min) {
+    			smin = nums[i];
+    		}
+    	}
+
+    	return smin;
+    }
+}
+
+// Optimal Solution ^^
+// O(n)
+//O(1)
