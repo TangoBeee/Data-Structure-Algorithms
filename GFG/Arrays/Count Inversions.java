@@ -27,8 +27,6 @@ class Solution {
 
     static long inversionCount(long arr[], long N) {
 
-        // Your Code Here
-
         long count=0;
 
         int n = (int)N - 1;
@@ -39,35 +37,35 @@ class Solution {
 
     }
 
-    public static long merge_sort(long arr[],int si,int ei) {
+    public static long merge_sort(long arr[],int left,int right) {
 
-        if(si>=ei) return 0;
+        if(left>=right) return 0;
 
         long count=0;
 
-        int mid = (si+ei)/2;
+        int mid = (left+right)/2;
 
-        count += merge_sort(arr,si,mid);
-        count += merge_sort(arr,mid+1,ei);
+        count += merge_sort(arr,left,mid);
+        count += merge_sort(arr,mid+1,right);
 
-        count += merge(arr,si,mid,ei);
+        count += merge(arr,left,mid,right);
 
         return count;
 
     }
 
 
-    public static long merge(long arr[], int si, int mid, int ei) {
+    public static long merge(long arr[], int left, int mid, int right) {
 
-        long temp[] = new long[ei-si+1];
+        long temp[] = new long[right-left+1];
 
         long count = 0; int k=0;
 
-        int indx1 = si;
+        int indx1 = left;
 
         int indx2 = mid+1;
 
-        while(indx1<=mid && indx2<=ei) {
+        while(indx1<=mid && indx2<=right) {
 
             if(arr[indx1]<=arr[indx2])
                 temp[k++] = arr[indx1++];
@@ -81,10 +79,10 @@ class Solution {
         while(indx1<=mid)
             temp[k++] = arr[indx1++];
 
-        while(indx2<=ei)
+        while(indx2<=right)
             temp[k++] = arr[indx2++];
 
-        for(int i=0, j=si ; i<temp.length; i++)
+        for(int i=0, j=left ; i<temp.length; i++)
             arr[j++] = temp[i];
 
         return count;
