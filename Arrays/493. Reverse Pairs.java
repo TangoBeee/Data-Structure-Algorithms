@@ -79,8 +79,8 @@ class Solution {
         while(j <= right)
             temp[k++] = nums[j++];
         
-        for(int indext = 0, indexo = left; indext < temp.length; indext++) {
-            nums[indexo++] = temp[indext];
+        for(int index = left; index <= right; index++) {
+            nums[index] = temp[index-left];
         }
         
         return count;
