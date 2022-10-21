@@ -1,3 +1,5 @@
+/* In this approach we will sort the array and get the last element of the array which will be largest element of the array */
+
 class Compute {
     
     public int largest(int arr[], int n)
@@ -14,6 +16,8 @@ class Compute {
 //Naive Solution
 
 /* --------------------------------------------------------------------- */
+
+/* In this approach we will linearly iterate from 0 to n and store the largest element in the var using 'Math.max()' function */
 
 class Compute {
     
