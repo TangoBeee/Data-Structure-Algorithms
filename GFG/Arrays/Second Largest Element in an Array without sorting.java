@@ -1,3 +1,6 @@
+/* In this approach first we will get largest and smallest element in the array and then we will use those 
+   loops in a loop where we will find second smallest and second largest element of the array */
+
 import java.util.Arrays;
 
 public class untitled{
@@ -52,13 +55,14 @@ public class untitled{
     }
 }
 
-// Naive Solution ^^
+// Naive Solution ^^ 
 // TC: O(n)
 //SC: O(1)
 
 //-----------------------------------------------------------------------------------------------------
 
-
+/* In this approach we will use two variables to store largest and second largest element of the array and then
+and we will check if max is '>' then nums[i] and second max is '<' max and similar we will get smallest and second smallest element from the array  */
 
 import java.util.Arrays;
 
