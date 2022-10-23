@@ -34,4 +34,45 @@ class Solution {
    |------------------------Optimal Solution (TC: O(log N) | SC: O(1))----------------------------|
    |----------------------------------------------------------------------------------------------| */
 
-
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+        int i = 0, j = nums.length-1;
+        int[] res = {-1, -1};
+        
+        //for first position
+        while(i <= j) {
+            int mid = i+(j-i)/2;
+            
+            if(nums[mid] == target) {
+                res[0] = mid;
+                j = mid-1;
+            }
+            else if(nums[mid] < target)
+                i = mid+1;
+            else
+                j = mid-1;
+            
+        }
+        
+        i = 0;
+        j = nums.length-1;
+        
+        //for last position
+        while(i <= j) {
+            int mid = i+(j-i)/2;
+            
+            if(nums[mid] == target) {
+                res[1] = mid;
+                i = mid+1;
+            }
+            else if(nums[mid] < target)
+                i = mid+1;
+            else
+                j = mid-1;
+            
+        }
+        
+        return res;
+    }
+}
