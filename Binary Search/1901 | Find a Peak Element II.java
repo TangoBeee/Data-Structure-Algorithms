@@ -104,27 +104,35 @@ class Solution {
 
 class Solution {
     public int[] findPeakGrid(int[][] mat) {
-        int startCol = 0, endCol = mat[0].length-1;
+        int low = 0, high = mat[0].length-1;
         
-        while(startCol <= endCol){
-            int maxRow = 0, midCol = startCol + (endCol-startCol)/2;
+        while(low <= high) {
+            int mid = (low+high) >>> 1;
+            int maxRow = maxRowElement(mat, mid);
             
-            for(int row=0; row<mat.length; row++){
-                 maxRow = mat[row][midCol] >= mat[maxRow][midCol]? row : maxRow;  
-            }
+            boolean leftIsBig = mid-1 >= low && mat[maxRow][mid-1] > mat[maxRow][mid];
+            boolean rightIsBig = mid+1 <= high && mat[maxRow][mid+1] > mat[maxRow][mid];
             
-            boolean leftIsBig    =   midCol-1 >= startCol  &&  mat[maxRow][midCol-1] > mat[maxRow][midCol];
-            boolean rightIsBig   =   midCol+1 <= endCol    &&  mat[maxRow][midCol+1] > mat[maxRow][midCol];
+            if(!leftIsBig && !rightIsBig)
+                return new int[] {maxRow, mid};
             
-            if(!leftIsBig && !rightIsBig)   // we have found the peak element
-                return new int[]{maxRow, midCol};
-            
-            else if(rightIsBig)  // if rightIsBig, then there is an element in 'right' that is bigger than all the elements in the 'midCol', 
-                startCol = midCol+1; //so 'midCol' cannot have a 'peakPlane'
-            
-            else // leftIsBig
-                endCol = midCol-1;
+            else if(leftIsBig)
+                high = mid-1;
+            else
+                low = mid+1;
         }
+        
         return null;
+    }
+    
+    private int maxRowElement(int[][] mat, int mid) {
+        int max = 0;
+        
+        for(int i = 0; i < mat.length; i++) {
+            if(mat[i][mid] >= mat[max][mid])
+                max = i;
+        }
+        
+        return max;
     }
 }
